@@ -135,6 +135,19 @@ lord_list = [
     (re.compile(r'\b'+s_lord+'.?forsaken\b', re.I), "forsaken", keep_case),
     # Godawful
     (re.compile(r'\b'+s_lord+'.?awful\b', re.I), "forsaken", keep_case),
+    
+    
+    # Custom added
+    (re.compile(r'\b'+s_lord+'.?dammit\b', re.I), "forsaken", keep_case),
+    
+    # Holy Christ / Holy Jesus / Holy God
+    (re.compile(r"\bholy "+s_lord+r"!?", re.I), "holy cow", first_case),
+     # God almighty / Jesus almighty / Christ almighty
+    (re.compile(r"\b"+s_lord+r" almighty!?", re.I), "goodness gracious", first_case),
+    # Goddamn / Christdamn / Jesuschristdamn
+    (re.compile(r"\b"+s_lord+r"[-\s]?damn(?:ed)?\b", re.I), "damn", first_case),
+    # Goddammit / Goddamit (and with Jesus/Christ forms)
+    (re.compile(r"\b"+s_lord+r"[-\s]?(dammit|damit)\b", re.I), "damn", first_case),
 ]
 
 # Use if this book is likely to take Lord's name in vain
@@ -488,25 +501,26 @@ DEBUG = True
 
 
 def language_check(text):
-    ret_val = re_list + lord_list
-    # Determine if this book is likely to take Lord's name in vain
-    if re.search("(for Christ's sake!|Holy Christ!|Holy Jesus!|for God's sake!|God almighty!|goddamn|fuck)", text, re.I):
-        if DEBUG:
-            print("Looks like book uses Lord's name in vain")
-        ret_val += vain_lord_list
-    else:
-        if DEBUG:
-            print("Looks like book does not use Lord's name in vain")
-    # Ass has two very different contexts. Guess which to use.
-    if re.search("(dumbass|asshole|smart ass|kick ass|ass kick|ass handed|badass|cover.{0,5}ass)", text):
-        ret_val += dirty_a_list
-        if DEBUG:
-            print("Looks like book does not need the donkey treatment")
-    else:
-        ret_val += clean_a_list
-        if DEBUG:
-            print("Looks like book calls donkeys asses")
-    # open('/tmp/dump.txt','w').write(text)
+    ret_val = lord_list + vain_lord_list
+    # ret_val = re_list + lord_list + vain_lord_list
+    # # Determine if this book is likely to take Lord's name in vain
+    # if re.search("(for Christ's sake!|Holy Christ!|Holy Jesus!|for God's sake!|God almighty!|goddamn|fuck)", text, re.I):
+    #     if DEBUG:
+    #         print("Looks like book uses Lord's name in vain")
+    #     ret_val += vain_lord_list
+    # else:
+    #     if DEBUG:
+    #         print("Looks like book does not use Lord's name in vain")
+    # # Ass has two very different contexts. Guess which to use.
+    # if re.search("(dumbass|asshole|smart ass|kick ass|ass kick|ass handed|badass|cover.{0,5}ass)", text):
+    #     ret_val += dirty_a_list
+    #     if DEBUG:
+    #         print("Looks like book does not need the donkey treatment")
+    # else:
+    #     ret_val += clean_a_list
+    #     if DEBUG:
+    #         print("Looks like book calls donkeys asses")
+    # # open('/tmp/dump.txt','w').write(text)
     return ret_val
 
 
