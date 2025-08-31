@@ -148,6 +148,9 @@ lord_list = [
     (re.compile(r"\b"+s_lord+r"[-\s]?damn(?:ed)?\b", re.I), "damn", first_case),
     # Goddammit / Goddamit (and with Jesus/Christ forms)
     (re.compile(r"\b"+s_lord+r"[-\s]?(dammit|damit)\b", re.I), "damn", first_case),
+    
+    (re.compile(r"\b"+s_lord+r"\s+fuck(?:ing)?\s+(damn(?:it|ed)?|dammit|damnit)\b", re.I),
+     "damn", first_case),
 ]
 
 # Use if this book is likely to take Lord's name in vain
