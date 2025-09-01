@@ -140,18 +140,17 @@ lord_list = [
     # Custom added
     (re.compile(r'\b'+s_lord+'.?dammit\b', re.I), "forsaken", keep_case),
     # Oh my God (with ellipses, dashes, commas, etc)
-    (re.compile(r"\boh(?:[,\.\-\s…]+)my(?:[,\.\-\s…]+)"+s_lord+r"\b",re.I), "oh my goodness", first_case),
-    
+    (re.compile(r'\boh(?:[,\.\-\s…]+)my(?:[,\.\-\s…]+)'+s_lord+r'\b',re.I), "oh my goodness", first_case),
     # Holy God
-    (re.compile(r"\bholy "+s_lord+r"!?", re.I), "holy cow", first_case),
+    (re.compile(r'\bholy '+s_lord+r'!?', re.I), "holy cow", first_case),
      # God almighty
-    (re.compile(r"\b"+s_lord+r" almighty!?", re.I), "goodness gracious", first_case),
+    (re.compile(r'\b'+s_lord+r' almighty!?', re.I), "goodness gracious", first_case),
     # Goddamn
-    (re.compile(r"\b"+s_lord+r"[-\s]?damn(?:ed)?\b", re.I), "damn", first_case),
-    # Goddammit / Goddamit
-    (re.compile(r"\b"+s_lord+r"[-\s]?(dammit|damit)\b", re.I), "damn", first_case),
-    
-    (re.compile(r"\b"+s_lord+r"\s+fuck(?:ing)?\s+(damn(?:it|ed)?|dammit|damnit)\b", re.I),
+    (re.compile(r'\b'+s_lord+r'[-\s]?damn(?:ed)?\b', re.I), "damn", first_case),
+    # Goddammit / Goddamit / Goddamnit
+    (re.compile(r'\b'+s_lord+r'[-\s]?(dammit|damit|damnit)\b', re.I), "damn", first_case),
+    # God fucking dammit
+    (re.compile(r'\b'+s_lord+r'\s+fuck(?:ing)?\s+(damn(?:it|ed)?|dammit|damnit)\b', re.I),
      "damn", first_case),
 ]
 
