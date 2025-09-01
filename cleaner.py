@@ -96,7 +96,7 @@ clean_a_list = [
     (re.compile(r'(?<!(in\W|..>))\bass\b', re.I), "donkey", keep_case),
 ]
 
-s_lord = '(god|jesus(\W?christ)?|christ)'
+s_lord = '(god|gods|jesus(\W?christ)?|christ)'
 lord_list = [
     # Thank God
     (re.compile(r'thank( you\,?)? '+s_lord+r'\b(?! of)', re.I), "thank goodness", first_case),
